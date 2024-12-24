@@ -1,0 +1,141 @@
+/* /src/styles/Navbar.module.css */
+
+/* General navbar styling */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.7);
+        /* Adjust the transparency */
+    color: #fff;
+    /* Dark background for header */
+    padding: 15px 20px;
+    /* Adjusted for better spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    width: 100%;
+    position: relative;
+    /* Keeps the header fixed on scroll */
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    /* Ensure elements wrap on smaller screens */
+    gap: 10px;
+    /* Add spacing between elements */
+}
+
+.headerLogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Space between logo and other elements */
+}
+
+.headerLogo .logo {
+    width: 25px;
+    /* Smaller logo */
+    height: 25px;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+    /* Subtle shadow */
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* Ensure navbar wraps on smaller screens */
+    justify-content: relative;
+    /* Center items if wrapping occurs */
+}
+
+.navLink {
+    color: #ffffff;
+    /* Light text for contrast */
+    text-decoration: none;
+    font-family: 'Impact', sans-serif;
+    font-weight: 350;
+    font-size: 1.25rem;
+    /* Consistent font size */
+    transition: color 0.3s ease-in-out;
+}
+
+.navLink:hover {
+    color: #f16507;
+    /* Highlight on hover */
+}
+
+.authLinks {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.authLinks li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-family: 'Impact', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: color 0.3s ease-in-out;
+}
+
+.authLinks li a:hover {
+    color: #f16507;
+    /* Red highlight on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        /* Stack items on smaller screens */
+        align-items: stretch;
+        /* Stretch items to fit the width */
+        gap: 15px;
+    }
+
+    .headerLogo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        /* Space between logo and other elements */
+    }
+
+    .navbar {
+        justify-content: center;
+        /* Center items */
+        width: 100%;
+        /* Ensure navbar spans full width */
+    }
+
+    .navLink {
+        font-size: 0.95rem;
+        /* Smaller font size for compact spaces */
+    }
+
+    .authLinks li a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navLink {
+        font-size: 0.95rem;
+        /* Smaller font size for compact spaces */
+    }
+
+    .headerLogo {
+        display: flex;
+        align-items: center;
+        margin-left: 1px;
+        margin-right: 7px;
+    }
+
+    .authLinks li a {
+        font-size: 0.9rem;
+        margin-right: 0;
+        margin-left: 340px;
+    }
+}

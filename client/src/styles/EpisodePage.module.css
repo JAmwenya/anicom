@@ -1,0 +1,108 @@
+/* /src/styles/EpisodePage.module.css */
+
+/* Main container */
+.container {
+    position: relative;
+    /* Make sure the pseudo-element is positioned relative to this container */
+    background-image: url('../assets/background-pattern-1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    min-height: 100vh;
+}
+
+.container::after {
+    content: "";
+    /* Required for the pseudo-element */
+    position: absolute;
+    /* Position it over the container */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    /* Use the same background image */
+    filter: blur(8px);
+    /* Apply blur effect */
+    z-index: -1;
+    /* Place it behind the content */
+}
+
+/* Title styling */
+.heading {
+    font-family: 'Impact', sans-serif;
+    font-size: 3rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+}
+
+/* Episode list container */
+.episodeList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Pagination styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #f39c12;
+    margin-top: 20px;
+}
+
+/* No content message */
+.noContentMessage {
+    font-size: 1.5rem;
+    color: #ff6347;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Pagination buttons */
+.pagination button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #ffac33;
+    /* Gold accent */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .episodeList {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .episodeList {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}

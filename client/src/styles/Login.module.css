@@ -1,0 +1,194 @@
+/* /src/styles/Login.module.css */
+
+/* General login styling */
+.authContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('../assets/background-pattern.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.heading {
+    font-family: 'Impact', sans-serif;
+    font-size: 3rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+}
+
+.inputField {
+    width: 350px;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 2px solid #444;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.772);
+    color: #444;
+    transition: border-color 0.3s ease;
+}
+
+.button {
+    width: 350px;
+    padding: 12px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+}
+
+.authContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    /* Keeps the form in the center vertically */
+    background-color: #f5f5f500;
+}
+
+.authCard {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 5px 5px #383434;
+    width: 350px;
+    transition: all 0.95s ease;
+    position: relative;
+}
+
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 8px;
+    color: #ffff;
+}
+
+.authForm {
+    margin-top: 0;
+    display: inline-flexbox;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputField {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.inputField:focus {
+    border-color: #042548b0;
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 10px;
+    background-color:#000000b0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.submitBtn:hover {
+    background-color:#ffffff95;
+    color: #f16507;
+}
+
+.toggleButton {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.toggleButton:hover {
+    color: #f16507;
+    background-color: #fd482800;
+}
+
+.slideIn {
+    animation: slideIn 0.75s forwards;
+}
+
+.slideOut {
+    animation: slideOut 0.75s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.successModal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #383434;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.error {
+    color: #ff4d4d;
+    margin-top: 10px;
+    text-align: center;
+}

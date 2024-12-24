@@ -1,0 +1,89 @@
+/* /src/styles/ContentDetail.module.css */
+
+.container {
+    background-color: #1e1e1e;
+    /* Dark background for the page */
+    color: #fff;
+    /* Light text color */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+}
+
+.title {
+    font-size: 2rem;
+    /* Larger title */
+    color: #ffac33;
+    /* Gold accent color for the title */
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+    /* Slightly lighter text for description */
+    margin-bottom: 20px;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Image shadow for depth */
+}
+
+.loading {
+    font-size: 1.5rem;
+    color: #ffac33;
+    /* Gold color for loading text */
+    text-align: center;
+    margin-top: 50px;
+}
+
+.errorMessage {
+    font-size: 1.2rem;
+    color: #ff4d4d;
+    /* Red color for error messages */
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Responsive Design for smaller screens */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        /* Slightly smaller title for smaller screens */
+    }
+
+    .description {
+        font-size: 1rem;
+        /* Smaller font size for description */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        /* Even smaller title for mobile */
+    }
+
+    .description {
+        font-size: 0.9rem;
+        /* Smaller description font size */
+    }
+}

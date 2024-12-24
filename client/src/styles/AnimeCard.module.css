@@ -1,0 +1,39 @@
+/* /src/styles/AnimeCard.module.css */
+
+/* Card container */
+.card {
+    width: 250px;
+    height: 350px;
+    /* Makes the card square */
+    flex: 0 0 auto;
+    /* Prevents the card from shrinking or growing */
+    margin: 0 10px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    /* Enlarge the card slightly on hover */
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures the anime image fits well within the card */
+}
+
+.cardInfo {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.9rem;
+}

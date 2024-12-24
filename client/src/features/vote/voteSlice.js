@@ -1,0 +1,47 @@
+// /src/features/vote/voteSlice.js
+import { createSlice } from "@reduxjs/toolkit";
+import { submitVoteAsync } from "./voteAction";
+
+// Initial state for the vote slice
+const initialState = {
+	votes: [],
+	loading: false,
+	error: null,
+};
+
+// Helper function to handle common async state management
+const handleAsyncState = (state, action, type) => {
+	if (type === "pending") {
+		state.loading = true;
+		state.error = null; // Clear previous errors
+	} else if (type === "fulfilled") {
+		state.loading = false;
+		state.votes = action.payload; // Update votes with the returned data
+		state.error = null;
+	} else if (type === "rejected") {
+		state.loading = false;
+		state.error = action.error.message; // Set the error message
+	}
+};
+
+// Slice for vote state
+const voteSlice = createSlice({
+	name: "vote",
+	initialState,
+	reducers: {},
+	extraReducers: (builder) => {
+		// Handle submitVoteAsync
+		builder
+			.addCase(submitVoteAsync.pending, (state) =>
+				handleAsyncState(state, {}, "pending")
+			)
+			.addCase(submitVoteAsync.fulfilled, (state, action) =>
+				handleAsyncState(state, action, "fulfilled")
+			)
+			.addCase(submitVoteAsync.rejected, (state, action) =>
+				handleAsyncState(state, action, "rejected")
+			);
+	},
+});
+
+export default voteSlice.reducer;

@@ -1,0 +1,89 @@
+/* /src/styles/AnimeDetail.module.css */
+
+/* General container for the anime details page */
+.container {
+    background-color: #121212;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    min-height: 100vh;
+}
+
+/* Title of the anime */
+.title {
+    font-size: 3rem;
+    font-family: 'Impact', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Anime image styling */
+.image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Description styling */
+.description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 20px 0;
+    text-align: justify;
+}
+
+/* Episodes Section Title */
+.subTitle {
+    font-size: 2rem;
+    margin-top: 30px;
+    font-family: 'Impact', sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* List of episodes */
+.episodeList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+/* Error message styling */
+.errorMessage {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #ff6347;
+    margin-top: 20px;
+}
+
+/* Responsive design adjustments */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .image {
+        max-width: 90%;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+}

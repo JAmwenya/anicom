@@ -1,0 +1,108 @@
+/* /src/styles/Home.module.css */
+
+/* Main container */
+/* Home.module.css */
+.container {
+    background-color: #141414;
+    color: white;
+    padding: 20px;
+    /* Increase line-height for better readability */
+    background-image: url('../assets/hero-anime.jpeg');
+    /* Optional background pattern */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.heading {
+    font-family: 'Impact', sans-serif;
+    font-size: 3rem;
+    color: gradient  #e6499d;
+    margin-bottom: 20px;
+}
+.listHeading {
+    font-family: 'Impact', sans-serif;
+    color: antiquewhite;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.animeList {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Ensures smooth scrolling on mobile */
+}
+
+.animeList::-webkit-scrollbar {
+    display: none;
+    /* Hide the scrollbar */
+}
+
+.scrollButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.scrollButton:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.leftScroll {
+    left: 10px;
+}
+
+.rightScroll {
+    right: 10px;
+}
+
+.noAnimeMessage {
+    font-size: 1.2rem;
+    color: #ccc;
+    text-align: center;
+}
+
+/* Responsiveness for smaller devices */
+@media screen and (max-width: 768px) {
+    .heading {
+        font-size: 1.8rem;
+    }
+
+    .animeList {
+        gap: 10px;
+    }
+
+    .animeCard {
+        width: 150px;
+        height: 220px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heading {
+        font-size: 1.6rem;
+    }
+
+    .animeList {
+        gap: 5px;
+    }
+
+    .animeCard {
+        width: 120px;
+        height: 180px;
+    }
+}

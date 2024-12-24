@@ -1,0 +1,101 @@
+/* /src/styles/ContentPage.module.css */
+
+/* Main container for the content page */
+.container {
+    /* Increase line-height for better readability */
+    background-image: url('../assets/background-pattern-3.jpg');
+    /* Optional background pattern */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    min-height: 100vh;
+}
+
+/* Title styling */
+.heading {
+    font-family: 'Impact', sans-serif;
+    font-size: 3rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+}
+
+/* Content list grid */
+.contentList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.contentItem {
+    display: flex;
+    background-color: #000000;
+    flex-direction: row;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* Pagination styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #f39c12;
+    margin-top: 20px;
+}
+
+/* No content message */
+.noContentMessage {
+    font-size: 1.5rem;
+    color: #ff6347;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Pagination buttons */
+.pagination button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #ffac33;
+    /* Gold accent */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .contentList {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .contentList {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}

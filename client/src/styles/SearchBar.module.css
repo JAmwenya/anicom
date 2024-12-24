@@ -1,0 +1,14 @@
+/* /src/styles/SearchBar.module.css */
+.searchBar {
+    width: 300px;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.searchBar:focus {
+    outline: none;
+    border-color: #007bff;
+}

@@ -1,0 +1,20 @@
+/* /src/styles/Footer.module.css */
+
+/* General footer styling */
+.footer {
+    background: rgba(0, 0, 0, 0);
+    color: #fff;
+    padding: 20px 30px;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.footer p {
+    font-size: 1rem;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
