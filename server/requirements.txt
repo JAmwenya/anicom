@@ -1,0 +1,21 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-JWT-Extended
+Werkzeug
+python-dotenv
+psycopg2
+
+
+/public: Contains public assets such as index.html and favicon.
+/src: Main source code folder for the React app.
+/assets: Static assets like images, icons, and the placeholder-avatars folder for the anime character profile images.
+/components: Reusable UI components (e.g., buttons, cards, loader, pagination, etc.).
+/features: Contains Redux slices for different features (auth, user, anime, etc.).
+/api: Contains utility functions and API functions for interacting with the backend.
+/routes: Contains route management and protected route components.
+/store: Redux store setup and configuration.
+/styles: CSS Modules for component-level styles.
+/utils: Utility functions (e.g., constants, helpers, etc.).
+/pages: Page components for different routes in the app.
+/hooks: Custom React hooks to manage data fetching and logic.
