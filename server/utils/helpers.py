@@ -4,7 +4,7 @@ import jwt
 import os
 from inspect import signature
 from flask_jwt_extended import get_jwt_identity, verify_jwt_in_request
-from flask import jsonify, session, request
+from flask import jsonify, session, request, g
 from functools import wraps
 from server.models.user import User
 from server.config import config_by_name
@@ -66,35 +66,46 @@ def paginate_query(query, page, per_page):
 
 
 def custom_jwt_required(f):
-    """Custom decorator to enforce JWT authentication."""
+    """Custom decorator to enforce JWT authentication and inject user_id into the request."""
 
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        token = request.headers.get("Authorization", None)
+        token = request.headers.get("Authorization")
 
+        # Ensure the token is present and in the correct format
         if not token:
             return jsonify({"message": "Token is missing!"}), 403
-
         if not token.startswith("Bearer "):
-            return jsonify({"message": "Invalid token format!"}), 403
+            return jsonify(
+                {"message": "Invalid token format! Expected 'Bearer <token>'"}
+            ), 403
 
         try:
+            # Extract and decode the token
             token = token.split(" ")[1]
             data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            user_id = data["user_id"]
+            user_id = data.get("user_id")
 
+            if not user_id:
+                return jsonify({"message": "Token is invalid! Missing user_id"}), 403
+
+            # Fetch the user from the database
             user = User.query.get(user_id)
             if user is None:
                 return jsonify({"message": "User not found!"}), 403
+
+            # Inject the user_id into Flask's global context
+            g.user_id = user_id
+            g.user = user  # Optional: Attach the full user object for convenience
 
         except jwt.ExpiredSignatureError:
             return jsonify({"message": "Token has expired!"}), 403
         except jwt.InvalidTokenError:
             return jsonify({"message": "Invalid token!"}), 403
         except Exception as e:
-            return jsonify({"message": f"An error occurred: {str(e)}"}), 500
+            return jsonify({"message": f"An unexpected error occurred: {str(e)}"}), 500
 
-        # Check if the view function expects 'user_id' as an argument
+        # Automatically pass `user_id` to the route if it's part of the function's parameters
         func_signature = signature(f)
         if "user_id" in func_signature.parameters:
             kwargs["user_id"] = user_id

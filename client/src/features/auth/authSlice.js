@@ -1,4 +1,5 @@
 // /src/features/auth/authSlice.js
+// /src/features/auth/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import {
 	loginUserAsync,
@@ -15,70 +16,80 @@ const initialState = {
 	isAuthenticated: false,
 };
 
-// Helper function to set user, token, and authentication state
+// Utility function to set authentication state
 const setAuthState = (state, { user, token }) => {
 	state.user = user;
 	state.token = token;
-	state.isAuthenticated = true;
+	state.isAuthenticated = !!token; // Ensure authenticated state matches token presence
 	state.error = null;
+	state.loading = false;
 };
 
-// Helper function to handle pending state for any async action
-const handlePending = (state) => {
+// Utility function to reset authentication state
+const resetAuthState = (state) => {
+	state.user = null;
+	state.token = null;
+	state.isAuthenticated = false;
+	state.error = null;
+	state.loading = false;
+};
+
+// Utility function for pending state
+const setPendingState = (state) => {
 	state.loading = true;
 	state.error = null;
 };
 
-// Helper function to handle rejected state for any async action
-const handleRejected = (state, action) => {
+// Utility function for rejected state
+const setRejectedState = (state, error) => {
 	state.loading = false;
-	state.error = action.error.message;
+	state.error = error.message || "An unexpected error occurred";
 };
 
-// Slice for authentication state
+// Create the auth slice
 const authSlice = createSlice({
 	name: "auth",
 	initialState,
 	reducers: {
-		// Action to set user and token manually
+		// Manually set user and token (e.g., after rehydration)
 		setUser: (state, action) => {
 			setAuthState(state, action.payload);
 		},
+
+		// Logout and reset the state
 		logout: (state) => {
-			state.user = null;
-			state.token = null;
-			state.isAuthenticated = false;
+			resetAuthState(state);
 		},
 	},
+
 	extraReducers: (builder) => {
-		// Handle loginUserAsync
+		// Handle async actions for login
 		builder
-			.addCase(loginUserAsync.pending, (state) => handlePending(state))
+			.addCase(loginUserAsync.pending, setPendingState)
 			.addCase(loginUserAsync.fulfilled, (state, action) => {
-				state.loading = false;
 				setAuthState(state, action.payload);
 			})
-			.addCase(loginUserAsync.rejected, (state, action) =>
-				handleRejected(state, action)
-			);
+			.addCase(loginUserAsync.rejected, (state, action) => {
+				setRejectedState(state, action.error);
+			});
 
-		// Handle registerUserAsync
+		// Handle async actions for registration
 		builder
-			.addCase(registerUserAsync.pending, (state) => handlePending(state))
+			.addCase(registerUserAsync.pending, setPendingState)
 			.addCase(registerUserAsync.fulfilled, (state, action) => {
-				state.loading = false;
 				setAuthState(state, action.payload);
 			})
-			.addCase(registerUserAsync.rejected, (state, action) =>
-				handleRejected(state, action)
-			);
+			.addCase(registerUserAsync.rejected, (state, action) => {
+				setRejectedState(state, action.error);
+			});
 
-		// Handle logoutUserAsync
-		builder.addCase(logoutUserAsync.fulfilled, (state) => {
-			state.user = null;
-			state.token = null;
-			state.isAuthenticated = false;
-		});
+		// Handle async actions for logout
+		builder
+			.addCase(logoutUserAsync.pending, setPendingState)
+			.addCase(logoutUserAsync.fulfilled, resetAuthState)
+			.addCase(logoutUserAsync.rejected, (state, action) => {
+				setRejectedState(state, action.error);
+			});
 	},
 });
 

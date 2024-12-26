@@ -1,20 +1,33 @@
 /* /src/styles/StarButton.module.css */
-.starButton {
-    background-color: transparent;
-    color: #f39c12;
-    border: 1px solid #f39c12;
-    padding: 5px 10px;
-    font-size: 18px;
+.star-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: none;
+    border: none;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 5px;
 }
 
-.starButton:hover {
-    background-color: #f39c12;
-    color: white;
+.checked {
+    color: orange;
+    /* Highlighted stars */
 }
 
-.starButton:active {
-    background-color: #e67e22;
+.unchecked {
+    color: #333;
+    /* Unhighlighted stars */
+}
+
+.fa-star {
+    font-size: 20px;
+    /* Size of the stars */
+    margin: 0 2px;
+    /* Space between stars */
+}
+
+.star-button:hover .fa-star {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+    transition: transform 0.2s ease;
 }

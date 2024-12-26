@@ -16,3 +16,24 @@ export const formatDate = (dateString) => {
 export const isLoggedIn = (token) => {
 	return token !== null && token !== undefined;
 };
+
+// Helper function to set the token in local storage
+export const setToken = (token) => {
+	if (typeof token === "object") {
+		console.error(
+			"Invalid token format, expected string but got object:",
+			token
+		);
+	}
+	localStorage.setItem("token", token);
+};
+
+// Helper function to get the token from local storage
+export const getToken = () => {
+    return localStorage.getItem("token");
+};
+
+// Helper function to remove the token from local storage
+export const removeToken = () => {
+    localStorage.removeItem("token");
+};

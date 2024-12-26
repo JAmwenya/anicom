@@ -1,6 +1,6 @@
 // /src/features/vote/voteSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { submitVoteAsync } from "./voteAction";
+import { submitVoteAsync, fetchVoteByIdAsync, fetchVotesAsync, updateVoteAsync, deleteVoteAsync } from "./voteAction";
 
 // Initial state for the vote slice
 const initialState = {
@@ -41,6 +41,54 @@ const voteSlice = createSlice({
 			.addCase(submitVoteAsync.rejected, (state, action) =>
 				handleAsyncState(state, action, "rejected")
 			);
+
+        // Handle fetchVotesAsync
+        builder
+            .addCase(fetchVotesAsync.pending, (state) =>
+                handleAsyncState(state, {}, "pending")
+            )
+            .addCase(fetchVotesAsync.fulfilled, (state, action) =>
+                handleAsyncState(state, action, "fulfilled")
+            )
+            .addCase(fetchVotesAsync.rejected, (state, action) =>
+                handleAsyncState(state, action, "rejected")
+            );
+
+        // Handle fetchVoteByIdAsync
+        builder
+            .addCase(fetchVoteByIdAsync.pending, (state) =>
+                handleAsyncState(state, {}, "pending")
+            )
+            .addCase(fetchVoteByIdAsync.fulfilled, (state, action) =>
+                handleAsyncState(state, action, "fulfilled")
+            )
+            .addCase(fetchVoteByIdAsync.rejected, (state, action) =>
+                handleAsyncState(state, action, "rejected")
+            );
+
+        // Handle updateVoteAsync
+        builder
+            .addCase(updateVoteAsync.pending, (state) =>
+                handleAsyncState(state, {}, "pending")
+            )
+            .addCase(updateVoteAsync.fulfilled, (state, action) =>
+                handleAsyncState(state, action, "fulfilled")
+            )
+            .addCase(updateVoteAsync.rejected, (state, action) =>
+                handleAsyncState(state, action, "rejected")
+            );
+
+        // Handle deleteVoteAsync
+        builder
+            .addCase(deleteVoteAsync.pending, (state) =>
+                handleAsyncState(state, {}, "pending")
+            )
+            .addCase(deleteVoteAsync.fulfilled, (state, action) =>
+                handleAsyncState(state, action, "fulfilled")
+            )
+            .addCase(deleteVoteAsync.rejected, (state, action) =>
+                handleAsyncState(state, action, "rejected")
+            );
 	},
 });
 

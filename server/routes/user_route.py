@@ -1,9 +1,10 @@
 # server/routes/user_route.py
 
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from server.services.user_service import UserService
 from server.utils.helpers import create_response, custom_jwt_required
 from server.utils.db import db
+from server.models.user import User
 
 user_bp = Blueprint("user", __name__)
 
@@ -116,3 +117,10 @@ def delete_user(user_id):
     except Exception as e:
         print(f"Error occurred while deleting user: {str(e)}")  # Error message
         return create_response(message="Internal server error", status=500)
+
+@user_bp.route("/user/profile", methods=["GET"])
+@custom_jwt_required
+def get_user_profile(user_id):
+    """Fetch the profile of the authenticated user."""
+    user = User.query.get(user_id)
+    return jsonify({"user": user.to_dict()}), 200

@@ -3,7 +3,7 @@
 from flask import Blueprint, request, jsonify
 from server.services.auth_service import AuthService
 from server.utils.helpers import create_response, custom_jwt_required, handle_exception
-from server.utils.validators import validate_email, validate_password
+from server.utils.validators import validate_email, validate_password, validate_username
 
 
 auth_bp = Blueprint("auth", __name__)
@@ -19,7 +19,8 @@ def register():
         email = data.get("email")
         password = data.get("password")
 
-        # Validate email and password
+        # Validate username, email and password
+        validate_username(username)
         validate_email(email)
         validate_password(password)
 

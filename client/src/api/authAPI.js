@@ -1,56 +1,58 @@
 // /src/api/authAPI.js
-import { postRequest } from "./FetchUtils";
+import {postRequest} from "./FetchUtils";
 
-// Generic POST request handler for authentication (login, register, logout)
-const postAuthRequest = async (endpoint, body) => {
-	try {
-		const { data, status, error } = await postRequest(endpoint, body);
-		console.log("Response from backend:", { data, status, error });
+// Login user
+export const loginUser = async (credentials) => {
+  try {
+    const response = await postRequest("/login", credentials);
 
-		// If the status is 200 or 201 (success), store the token in localStorage
-		if (status === 200 || status === 201) {
-			if (data.token) {
-				// Save the token to localStorage
-				localStorage.setItem("token", data.token);
-			}
-			return { data }; // Return response data (user and token)
-		} else {
-			throw new Error(error || "Request failed");
-		}
-	} catch (error) {
-		console.error(`${endpoint} failed:`, error);
-		return { error: error.message };
-	}
+    // Check if the response is successful and contains a token
+    if (response && response.status === 200 && response.data && response.data.token) {
+      console.log("Received token from backend:", response.data.token);
+      localStorage.setItem("token", response.data.token);
+      return response.data.token;
+    } else {
+      // If the token is missing or response status is not 200
+      console.error("Login failed, missing token or invalid status", response);
+      throw new Error("Failed to log in, no token received.");
+    }
+  } catch (error) {
+    // Catch any errors during the request
+    console.error("Login error:", error.message);
+    throw new Error("Failed to log in due to network or server issue.");
+  }
 };
 
-// Login function using postAuthRequest to handle token storage
-export const loginUser = async (email, password) => {
-	// Reusing postAuthRequest to handle login
-	const response = await postAuthRequest("/login", { email, password });
+// Register user
+export const registerUser = async (userData) => {
+  try {
+    console.log("Registering user with data:", userData);
 
-	// Check if login was successful
-	if (response.data && response.data.token) {
-		console.log("Login successful, token stored:", response.data.token);
-        console.log("Token received from backend:", response.data.token);
-		localStorage.setItem("token", response.data.token);
-		return response.data.token;
-	} else {
-		throw new Error("Failed to log in");
-	}
+    const response = await postRequest("/register", {
+      username: userData.username,
+      email: userData.email,
+      password: userData.password,
+    });
+
+    // Check if the response is successful
+    if (response && response.status === 201) {
+      console.log("User registration successful:", response.data);
+      return response.data; // Return the response data for further use
+    } else {
+      // If the response status is not 200, log and throw an error
+      console.error("Registration failed, invalid status or missing data", response);
+      throw new Error(response.data?.message || "Failed to register the user.");
+    }
+  } catch (error) {
+    // Catch any errors during the request
+    console.error("Registration error:", error.message);
+    throw new Error("Failed to register due to network or server issue.");
+  }
 };
 
-// Register function, also uses postAuthRequest
-export const registerUser = async (username, email, password) => {
-	return postAuthRequest("/register", { username, email, password });
-};
 
-// Logout function, calls postAuthRequest for logout
-export const logoutUser = async () => {
-	const response = await postAuthRequest("/logout", {});
-	if (response.data) {
-		localStorage.removeItem("token");
-		return response.data;
-	} else {
-		throw new Error("Failed to log out");
-	}
+// Logout user
+export const logoutUser = () => {
+	localStorage.removeItem("token");
+	console.log("Token removed from localStorage");
 };

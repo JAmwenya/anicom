@@ -1,6 +1,6 @@
 // /src/utils/constants.js
 
-export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"; // Base URL for the backend API
+export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 export const ERROR_MESSAGE = "Something went wrong, please try again later";
 export const SUCCESS_MESSAGE = "Action completed successfully";
 
@@ -14,4 +14,4 @@ export const API_PATHS = {
 };
 
 // Other constants
-export const DEFAULT_AVATAR = "/assets/placeholder-avatars/char1.png"; // Default avatar for users
+export const DEFAULT_AVATAR = "/assets/placeholder-avatars/char1.png";

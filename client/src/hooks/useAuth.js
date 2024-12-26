@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, logout } from "../features/auth/authSlice";
 import { useEffect } from "react";
-import { fetchUserProfileAsync} from "../features/user/userAction";
+import { fetchUserProfileAsync } from "../features/user/userAction";
 
 const useAuth = () => {
 	const dispatch = useDispatch();
@@ -10,15 +10,16 @@ const useAuth = () => {
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const user = useSelector((state) => state.auth.user);
 
-	// Check if user is authenticated on component mount
+	// Check if user is authenticated on component mount or token change
 	useEffect(() => {
 		if (token) {
-			fetchUserProfileAsync(dispatch, token);
+			dispatch(fetchUserProfileAsync(token));
 		}
 	}, [token, dispatch]);
 
 	const login = (userData, token) => {
 		dispatch(setUser({ user: userData, token }));
+		dispatch(fetchUserProfileAsync(token));
 	};
 
 	const logoutUser = () => {

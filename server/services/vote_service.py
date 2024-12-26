@@ -7,12 +7,12 @@ from server.utils.validators import validate_vote_value
 
 class VoteService:
     @staticmethod
-    def add_vote(user_id, episode_id, vote_value):
+    def add_vote(user_id, episode_id, vote_value, anime_id):
         """Allow a user to vote on an episode."""
         if not validate_vote_value(vote_value):
             raise ValueError("Invalid vote value")
 
-        new_vote = Vote(user_id=user_id, episode_id=episode_id, vote=vote_value)
+        new_vote = Vote(user_id=user_id, episode_id=episode_id, vote=vote_value, anime_id=anime_id)
         db.session.add(new_vote)
         db.session.commit()
         return new_vote

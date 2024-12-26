@@ -47,11 +47,11 @@ def validate_username(username):
 
 
 def validate_vote_value(value):
-    """Validate vote value (upvote or downvote)."""
+    """Validate vote value (rating from 1 to 5)."""
     if not isinstance(value, int):
         raise ValueError("Vote value must be an integer")
-    if value not in [-1, 1]:
-        raise ValueError("Vote value must be either 1 (upvote) or -1 (downvote)")
+    if value < 1 or value > 5:
+        raise ValueError("Vote value must be between 1 and 5")
     return True
 
 

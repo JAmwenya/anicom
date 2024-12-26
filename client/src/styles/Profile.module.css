@@ -2,92 +2,123 @@
 
 /* General styling */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 20px;
-    background-color: #141414;
-    color: #fff;
-    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .heading {
-    font-size: 3rem;
-    font-family: 'Impact', sans-serif;
-    font-weight: 400;
+    text-align: center;
+    font-size: 2rem;
     margin-bottom: 20px;
 }
 
-.username {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 10px;
+.successMessage,
+.errorMessage {
+    color: green;
+    text-align: center;
+    font-size: 1rem;
 }
 
-.email {
-    font-size: 1.2rem;
-    color: #888;
-    margin-bottom: 30px;
+.profileWrapper {
+    display: flex;
+    flex-direction: column;
+    /* Single column layout */
+    align-items: center;
+    /* Center items horizontally */
+    gap: 30px;
+    /* Space between sections */
 }
 
-.avatarContainer {
+.leftColumn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
+    text-align: center;
+    gap: 20px;
+    /* Spacing between avatar and basicInfo */
 }
 
-.avatarContainer h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
+.avatarContainer {
     margin-bottom: 20px;
 }
 
+.avatar {
+    width: 180px;
+    /* Larger avatar size */
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.basicInfo h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.basicInfo p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.rightColumn {
+    width: 100%;
+    /* Occupies full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center buttons */
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    /* Align buttons side by side */
+    gap: 15px;
+    /* Space between buttons */
+    justify-content: center;
+    /* Center align buttons */
+    align-items: center;
+    margin-top: 20px;
+    /* Space between buttons and avatar */
+}
+
+.deleteButton,
 .logoutButton {
     padding: 12px 24px;
-    font-size: 1.2rem;
-    background-color: #e50914;
-    color: white;
+    /* Slightly larger padding */
+    font-size: 1.1rem;
+    /* Larger font size */
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: auto;
+    /* Prevent stretching */
+    white-space: nowrap;
+    /* Prevent text wrapping */
 }
 
-.logoutButton:hover {
-    background-color: #f40612;
+.deleteButton {
+    background-color: #f44336;
+    color: white;
 }
 
+.logoutButton {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .heading {
-        font-size: 2.5rem;
+    .profileWrapper {
+        gap: 20px;
+        /* Slightly reduced spacing on smaller screens */
     }
 
-    .username {
-        font-size: 1.8rem;
-    }
-
-    .email {
-        font-size: 1rem;
-    }
-
-    .avatar {
-        width: 120px;
-        height: 120px;
-    }
-
-    .logoutButton {
-        font-size: 1rem;
-        padding: 10px 20px;
+    .buttonsContainer {
+        flex-direction: column;
+        /* Stack buttons on smaller screens */
+        gap: 10px;
+        /* Reduce gap between buttons */
     }
 }

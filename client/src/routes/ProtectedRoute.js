@@ -1,17 +1,32 @@
 // /src/routes/ProtectedRoute.js
 import React from "react";
+import Loader from "../components/Loader";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ProtectedRoute = ({ element, ...rest }) => {
-	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+const ProtectedRoute = ({ children }) => {
+	const { isAuthenticated, loading, user } = useSelector((state) => state.auth);
 
-	// If the user is authenticated, render the protected component
-	return isAuthenticated ? (
-		React.cloneElement(element, { ...rest })
-	) : (
-		<Navigate to="/register" />
-	);
+	// If authentication state is still loading, you can either render a loader or just return null
+	if (loading) {
+		return <Loader />;
+	}
+	if (!isAuthenticated || !user) {
+		
+		setTimeout(() => (""), 3000);
+
+		return (
+			<>
+				<Navigate
+					to="/login"
+					replace
+				/>
+			</>
+		);
+	}
+
+	// Render the protected content
+	return children;
 };
 
 export default ProtectedRoute;

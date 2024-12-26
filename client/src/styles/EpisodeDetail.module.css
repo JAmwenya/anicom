@@ -33,16 +33,51 @@
 /* Vote Section */
 .voteSection {
     display: flex;
+    font-size: 2rem;
     justify-content: center;
-    gap: 10px;
-    margin-top: 30px;
+    /* Aligns items vertically */
+    align-items: center;
+    /* Centers items horizontally */
+    margin-top: 20px;
+    /* Adjust spacing around the vote section */
+}
+
+/* Voting Message */
+.votingMessageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.votingMessage {
+    margin-top: 10px;
+    flex-direction: column;
+    /* Adds space between stars and the message */
+    font-size: 14px;
+    /* Adjusts the font size */
+    color: #555;
+    /* Default text color */
+    text-align: center;
+    /* Centers the message */
+}
+
+.success {
+    color: green;
+    /* Color for success messages */
+}
+
+.error {
+    color: red;
+    /* Color for error messages */
 }
 
 /* Star Button Style */
 .starButton {
-    font-size: 2rem;
+    font-size: 1rem;
+    margin: 0 5px;
     cursor: pointer;
-    color: #ffac33;
     /* Gold color for the stars */
     transition: transform 0.2s ease-in-out, color 0.2s ease;
 }
@@ -51,6 +86,35 @@
     transform: scale(1.2);
     color: #ffd700;
     /* Brighter gold on hover */
+}
+
+/* Checked star (selected by the user) */
+.checked {
+    color: orange;
+    /* Bright orange for selected stars */
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+/* Unchecked star (not selected) */
+.unchecked {
+    color: #000;
+    /* Grey for unselected stars */
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.unchecked:hover {
+    transform: scale(1.1);
+    /* Slight zoom on hover */
+    color: #8888;
+    /* Lighter grey on hover */
+}
+
+/* Add a slight animation when selecting stars */
+.checked:hover {
+    transform: scale(1.2);
+    /* Slight zoom on hover for selected stars */
 }
 
 /* Anime image styling */

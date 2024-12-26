@@ -1,24 +1,23 @@
 // /src/components/Navbar.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUserAsync } from "../features/auth/authAction";
 import styles from "../styles/Navbar.module.css";
 
-
 const Navbar = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { isAuthenticated, user } = useSelector((state) => state.auth);
-
 
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logoutUserAsync());
-		window.location.href = "/";
+		navigate("/"); // Redirect to the homepage after logout
 	};
 
 	return (
-		<navbar className={styles.header}>
+		<nav className={styles.header}>
 			{/* Navigation Links */}
 			<nav className={styles.navbar}>
 				<Link
@@ -68,7 +67,7 @@ const Navbar = () => {
 					</>
 				)}
 			</ul>
-		</navbar>
+		</nav>
 	);
 };
 

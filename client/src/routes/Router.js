@@ -10,7 +10,7 @@ import EpisodePage from "../pages/EpisodePage";
 import AnimeDetail from "../pages/AnimeDetail";
 import EpisodeDetail from "../pages/EpisodeDetail";
 import ContentDetail from "../pages/ContentDetail";
-// import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 const RouterComponent = () => {
 	return (
@@ -35,10 +35,15 @@ const RouterComponent = () => {
 				path="/register"
 				element={<Register />}
 			/>
-			{/* Protect routes */}
+
+			{/* Protected Routes */}
 			<Route
 				path="/profile"
-				element={<Profile />}
+				element={
+					<ProtectedRoute>
+						<Profile />
+					</ProtectedRoute>
+				}
 			/>
 			<Route
 				path="/anime/:id"
