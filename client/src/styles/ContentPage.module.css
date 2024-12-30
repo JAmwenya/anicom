@@ -79,6 +79,90 @@
     /* Gold accent */
 }
 
+/* Form container */
+.submitForm {
+    background-color: #8888;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Form title */
+.submitForm h3 {
+    font-size: 24px;
+    color: white;
+    /* Dark text */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form input group */
+.submitForm div {
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+.submitForm label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: whitesmoke;
+    margin-bottom: 8px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Input fields */
+.submitForm input,
+.submitForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff7d;
+}
+
+/* Input focus effect */
+.submitForm input:focus,
+.submitForm textarea:focus {
+    border-color: #4CAF50;
+    /* Green border on focus */
+    outline: none;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.4);
+}
+
+/* Textarea specific styles */
+.submitForm textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Submit button */
+.submitForm button {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+}
+
+.submitForm button:hover {
+    background-color: #45a049;
+    /* Darker green */
+    transform: scale(1.05);
+    /* Slight scaling */
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .title {

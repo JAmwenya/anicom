@@ -1,7 +1,6 @@
 # server/routes/content_route.py
 
 from flask import Blueprint, request
-from flask_jwt_extended import get_jwt_identity
 from server.services.content_service import ContentService
 from server.utils.helpers import create_response, custom_jwt_required
 
@@ -39,14 +38,13 @@ def get_content(content_id):
 
 @content_bp.route("/content", methods=["POST"])
 @custom_jwt_required
-def create_new_content():
+def create_new_content(user_id):
     """Create new content (review, article, fan art)."""
     try:
         data = request.get_json()
         title = data.get("title")
         body = data.get("body")
         content_type = data.get("content_type")
-        user_id = get_jwt_identity()
         anime_id = data.get("anime_id", None)
 
         # Call the ContentService to create the content

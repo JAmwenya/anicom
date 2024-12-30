@@ -4,6 +4,8 @@ import {
     fetchContentAsync,
     fetchContentByIdAsync,
     submitContentAsync,
+    patchContentAsync,
+    deleteContentAsync,
 } from "./contentAction";
 
 // Initial state for the content slice
@@ -82,6 +84,32 @@ const contentSlice = createSlice({
 			.addCase(submitContentAsync.rejected, (state, action) =>
 				handleAsyncState(state, action, "rejected")
 			);
+
+        // Handle patchContentAsync (patch existing content)
+        builder
+            .addCase(patchContentAsync.pending, (state) =>
+                handleAsyncState(state, {}, "pending")
+            )
+            .addCase(patchContentAsync.fulfilled, (state, action) => {
+                handleAsyncState(state, action, "fulfilled");
+                state.submittedContent = action.payload; // Update submitted content
+            })
+            .addCase(patchContentAsync.rejected, (state, action) =>
+                handleAsyncState(state, action, "rejected")
+            );
+
+        // Handle deleteContentAsync (delete content)
+        builder
+            .addCase(deleteContentAsync.pending, (state) =>
+                handleAsyncState(state, {}, "pending")
+            )
+            .addCase(deleteContentAsync.fulfilled, (state, action) => {
+                handleAsyncState(state, action, "fulfilled");
+                state.submittedContent = action.payload; // Update submitted content
+            })
+            .addCase(deleteContentAsync.rejected, (state, action) =>
+                handleAsyncState(state, action, "rejected")
+            );
 	},
 });
 

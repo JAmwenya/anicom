@@ -132,18 +132,13 @@ class ContentService:
         try:
             content = Content.query.get(content_id)
             if not content:
-                return create_response(message="Content not found", status=404)
-
+                return {"message": "Content not found"}, 404
+            
             db.session.delete(content)
             db.session.commit()
-
-            # Success message
-            print(f"Content with ID {content_id} deleted successfully.")
-            return create_response(message="Content deleted successfully", status=200)
-
+            
+            return {"message": "Content deleted successfully"}, 200
         except Exception as e:
             db.session.rollback()
-            print(f"Error deleting content: {str(e)}")  # Error message
-            return create_response(
-                message=f"Error deleting content: {str(e)}", status=500
-            )
+            print(f"Error in delete_content: {e}")
+            return {"message": f"Error: {e}"}, 500

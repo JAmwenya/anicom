@@ -4,6 +4,8 @@ import {
 	fetchAllContent,
 	submitContent,
 	fetchContentById,
+    patchContent,
+    deleteContent,
 } from "../../api/contentAPI";
 
 // Helper function to handle API response and errors
@@ -34,15 +36,51 @@ export const fetchContentByIdAsync = createAsyncThunk(
 	"content/fetchContentById",
 	async (contentId) => {
 		const response = await fetchContentById(contentId);
-		return handleApiResponse(response); // Use helper function for handling response
+		return handleApiResponse(response);
 	}
 );
 
 // Async thunk to submit content (review, fan art, etc.)
 export const submitContentAsync = createAsyncThunk(
 	"content/submitContent",
-	async ({ animeId, contentType, content }) => {
-		const response = await submitContent(animeId, contentType, content);
-		return handleApiResponse(response); // Use helper function for handling response
+	async (payload) => {
+		console.log("Payload received in submitContentAsync:", payload);
+		const { animeId, contentType, title, body } = payload;
+
+		if (!animeId || !contentType || !title || !body) {
+			console.error("Invalid payload. Missing required fields.");
+			throw new Error("Invalid payload");
+		}
+
+		const response = await submitContent(animeId, contentType, title, body);
+		return handleApiResponse(response);
 	}
+);
+
+// Async thunk to patch content (review, fan art, etc.)
+export const patchContentAsync = createAsyncThunk(
+	"content/patchContent",
+	async (content) => {
+		const { title, body, contentType, animeId } = content;
+		console.log("Patching content with:", { title, body, contentType, animeId }); // Debug log
+
+		// Validate all required fields
+		if (!title || !body || !contentType || !animeId) {
+			throw new Error("Invalid content data. Missing required fields.");
+		}
+
+		const response = await patchContent(content);
+		return handleApiResponse(response);
+	}
+);
+
+
+
+// Async thunk to delete content by ID
+export const deleteContentAsync = createAsyncThunk(
+    "content/deleteContent",
+    async (contentId) => {
+        const response = await deleteContent(contentId);
+        return handleApiResponse(response); // Use helper function for handling response
+    }
 );
